@@ -7,12 +7,13 @@ public class Pedido {
 	
 	private int numeroNota;
 	private double valorTotal;
-	private List<ItemPedido> itemPedido = new ArrayList<>();
+	private List<ItemPedido> itemPedido;
 	
 
 	public Pedido () {
 		numeroNota = 0;
 		valorTotal = 0.00;
+		itemPedido = new ArrayList<>();
 	}
 	
 	public int  getNumeroNota() {
@@ -21,14 +22,15 @@ public class Pedido {
 	}
 	
 	public void setNumeroNota (int numeroNota) {
+		this.numeroNota = numeroNota;
 		
 	}
 	
 	
 	public double getValorTotal() {
+        double valorTotal = 0;
         for (ItemPedido item : itemPedido) {
-        	Produto valor = null;
-			valorTotal += item.setProduto(valor);
+            valorTotal += item.calcularValorItem();
         }
         return valorTotal;
     }
@@ -38,7 +40,7 @@ public class Pedido {
 	}
 
 	public void setItemPedido(List<ItemPedido> itemPedido) {
-		this.itemPedido = itemPedido;
+		this.itemPedido = new ArrayList<>();
 	}
 	
 	public void adicionarItem(ItemPedido item) {
